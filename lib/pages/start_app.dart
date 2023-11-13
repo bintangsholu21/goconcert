@@ -13,7 +13,7 @@ class StartApp extends StatelessWidget {
           Container(
             decoration: BoxDecoration(
               image: DecorationImage(
-                image: AssetImage('../assets/background.png'),
+                image: AssetImage('../assets/img/background.png'),
                 fit: BoxFit.cover,
               ),
             ),
