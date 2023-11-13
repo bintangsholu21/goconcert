@@ -81,7 +81,7 @@ class StartApp extends StatelessWidget {
                         ),
                       ),
                       child: Text(
-                        'Pesan Sekarang!',
+                        'Daftar Sekarang!',
                         style: TextStyle(
                           fontFamily: 'Poppins',
                           color: Colors.black,
