@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'pages/start_app.dart';
+import 'package:goconcert/pages/start_app.dart';
 
 void main() {
   runApp(MyApp());

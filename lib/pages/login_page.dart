@@ -268,7 +268,7 @@ class _LoginPageState extends State<LoginPage> {
                             context,
                             MaterialPageRoute(
                               builder: (context) =>
-                                  DashboardPage(), // Ganti dengan halaman tujuan setelah login
+                                  DashboardWidget(), // Ganti dengan halaman tujuan setelah login
                             ),
                           );
                         }
