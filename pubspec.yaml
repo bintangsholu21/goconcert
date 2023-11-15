@@ -25,6 +25,10 @@ flutter:
   assets:
     - assets/img/background.png
     - assets/img/chevron-left-solid.svg
+    - assets/img/NewJeans-banner.png
+    - assets/img/LeSserafim-banner.png
+    - assets/img/Coldplay-banner.png
+    - assets/img/bmth-banner.png
   fonts:
     - family: Poppins
       fonts:
