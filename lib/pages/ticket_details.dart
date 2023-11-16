@@ -95,7 +95,7 @@ class TicketDetails extends StatelessWidget {
             alignment: Alignment.topCenter,
             child: selectedConcert != null
                 ? Image.asset(
-                    '../assets/img/${selectedConcert.banner}',
+                    'assets/img/${selectedConcert.banner}',
                     fit: BoxFit.cover,
                     width: MediaQuery.of(context).size.width,
                   )
@@ -232,7 +232,7 @@ class TicketDetails extends StatelessWidget {
                           context,
                           MaterialPageRoute(
                             builder: (context) =>
-                                ScanPage(), // Ganti dengan halaman tujuan untuk membeli tiket
+                                ScanPage(concertName: concertName), // Ganti dengan halaman tujuan untuk membeli tiket
                           ),
                         );
                       },

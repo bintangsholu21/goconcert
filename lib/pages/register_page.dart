@@ -50,7 +50,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         ),
                       ),
                       child: Image(
-                        image: AssetImage('../assets/img/left-chevron.png'),
+                        image: AssetImage('assets/img/left-chevron.png'),
                         width: 15,
                         height: 15,
                       ),

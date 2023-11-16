@@ -51,7 +51,7 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                       ),
                       child: Image(
-                        image: AssetImage('../assets/img/left-chevron.png'),
+                        image: AssetImage('assets/img/left-chevron.png'),
                         width: 15,
                         height: 15,
                       ),

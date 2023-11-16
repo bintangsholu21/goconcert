@@ -88,7 +88,7 @@ class DashboardPage extends State<DashboardWidget> {
                             ),
                           ),
                           child: Image(
-                            image: AssetImage('../assets/img/singer.png'),
+                            image: AssetImage('assets/img/singer.png'),
                             width: 15,
                             height: 15,
                           ),
@@ -129,7 +129,7 @@ class DashboardPage extends State<DashboardWidget> {
                       alignment:
                           Alignment.center, // This line centers the child
                       child: Image(
-                        image: AssetImage('../assets/img/bell.png'),
+                        image: AssetImage('assets/img/bell.png'),
                         width: 20,
                         height: 20,
                       ),
@@ -157,7 +157,7 @@ class DashboardPage extends State<DashboardWidget> {
                 children: [
                   // Search Icon
                   Image(
-                    image: AssetImage('../assets/img/search.png'),
+                    image: AssetImage('assets/img/search.png'),
                     width: 15,
                     height: 15,
                   ),
@@ -376,7 +376,7 @@ class DashboardPage extends State<DashboardWidget> {
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10.0),
               image: DecorationImage(
-                image: AssetImage('../assets/img/$imagePath'),
+                image: AssetImage('assets/img/$imagePath'),
                 fit: BoxFit.cover,
               ),
             ),
