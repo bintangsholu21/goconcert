@@ -22,6 +22,7 @@ dependencies:
   nik_validator: ^1.1.2
   provider: ^6.1.1
   flutter_exif_rotation: ^0.5.1
+  image: 3.1.3
 
 dev_dependencies:
   flutter_test:

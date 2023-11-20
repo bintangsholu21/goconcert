@@ -5,6 +5,7 @@ import 'package:google_ml_kit/google_ml_kit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:camera/camera.dart';
 import 'form_page.dart';
+import 'package:image/image.dart' as img;
 
 class ScanPage extends StatefulWidget {
   final String concertName;
@@ -22,14 +23,35 @@ class _ScanPageState extends State<ScanPage> {
   File? _image;
   final picker = ImagePicker();
 
+  Future<void> processImage() async {
+    // Read image from file
+    img.Image? image = img.decodeImage(File(_image!.path).readAsBytesSync());
+
+    if (image != null) {
+      // Convert image to grayscale
+      image = img.grayscale(image);
+
+      // Increase contrast by 20%
+      image = img.adjustColor(image, contrast: 50);
+
+      image = img.adjustColor(image, brightness: 50);
+
+      // Save the processed image
+      File(_image!.path).writeAsBytesSync(img.encodeJpg(image));
+    }
+  }
+
   Future getImage() async {
-    final pickedFile = await picker.getImage(source: ImageSource.gallery);
+    final pickedFile = await picker.pickImage(source: ImageSource.gallery);
 
     setState(() {
       if (pickedFile != null) {
         _image = File(pickedFile.path);
+        processImage();
+        recognizeText();
       } else {
-        print('No image selected.');
+        // Use a logging framework instead of print
+        debugPrint('No image selected.');
       }
     });
   }
@@ -58,7 +80,13 @@ class _ScanPageState extends State<ScanPage> {
       ResolutionPreset.medium,
     );
 
-    _initializeControllerFuture = _controller?.initialize();
+    _initializeControllerFuture = _controller?.initialize().then((_) {
+      if (!mounted) {
+        return;
+      }
+      setState(() {});
+      _controller?.startImageStream((image) => null); // Start the camera stream
+    });
   }
 
   @override
@@ -73,23 +101,33 @@ class _ScanPageState extends State<ScanPage> {
       body: Stack(
         children: [
           // Container 1 - Camera Preview
-          FutureBuilder<void>(
-            future: _initializeControllerFuture,
-            builder: (context, snapshot) {
-              if (snapshot.connectionState == ConnectionState.done) {
-                // Make sure _controller is initialized before using it
-                return _controller != null
-                    ? CameraPreview(_controller!)
-                    : Container();
-              } else {
-                return Center(child: CircularProgressIndicator());
-              }
-            },
+          Align(
+            alignment: Alignment.topCenter,
+            child: Container(
+              height: 600,
+              width: 450,
+              child: FutureBuilder<void>(
+                future: _initializeControllerFuture,
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.done) {
+                    // Make sure _controller is initialized before using it
+                    return _controller != null
+                        ? AspectRatio(
+                            aspectRatio: _controller!.value.aspectRatio,
+                            child: CameraPreview(_controller!),
+                          )
+                        : Container();
+                  } else {
+                    return Center(child: CircularProgressIndicator());
+                  }
+                },
+              ),
+            ),
           ),
 
           Container(
             // Container 2 - Header
-            height: 135.0,
+            height: 130.0,
             decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.only(
@@ -98,50 +136,52 @@ class _ScanPageState extends State<ScanPage> {
               ),
             ),
             padding: EdgeInsets.symmetric(horizontal: 20.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                GestureDetector(
-                  onTap: () {
-                    Navigator.pop(context);
-                  },
-                  child: Row(
-                    children: [
-                      Container(
-                        padding: EdgeInsets.all(5.0),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(8.0),
-                          border: Border.all(
+            child: Container(
+              margin: EdgeInsets.only(top: 50.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.pop(context);
+                    },
+                    child: Row(
+                      children: [
+                        Container(
+                          padding: EdgeInsets.all(5.0),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(8.0),
+                            border: Border.all(
+                              color: Colors.black,
+                              width: 1.0,
+                            ),
+                          ),
+                          child: Icon(
+                            Icons.chevron_left,
                             color: Colors.black,
-                            width: 1.0,
+                            size: 20.0,
                           ),
                         ),
-                        child: Icon(
-                          Icons.chevron_left,
-                          color: Colors.black,
-                          size: 20.0,
+                        SizedBox(width: 15.0),
+                        Text(
+                          'Scan KTP',
+                          style: TextStyle(
+                            fontSize: 20.0,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black,
+                          ),
                         ),
-                      ),
-                      SizedBox(width: 15.0),
-                      Text(
-                        'Scan KTP',
-                        style: TextStyle(
-                          fontSize: 20.0,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.black,
-                        ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
-                ),
-                // Add any other header components if needed
-              ],
+                ],
+              ),
             ),
           ),
 
           // Container 3 - Align Bottom Center
           Positioned(
-            bottom: 65.0,
+            bottom: 45.0,
             left: 0,
             right: 0,
             child: Align(
@@ -179,7 +219,7 @@ class _ScanPageState extends State<ScanPage> {
                       side: BorderSide(color: Colors.white, width: 2.0),
                     ),
                     child: Padding(
-                      padding: const EdgeInsets.all(20.0),
+                      padding: const EdgeInsets.all(25.0),
                       child: Icon(
                         FontAwesomeIcons.camera,
                         color: Colors.black,
@@ -195,7 +235,7 @@ class _ScanPageState extends State<ScanPage> {
                       fontSize: 14.0,
                     ),
                   ),
-                  SizedBox(height: 50.0),
+                  SizedBox(height: 25.0),
                   Container(
                     width: 370.0,
                     height: 50.0,

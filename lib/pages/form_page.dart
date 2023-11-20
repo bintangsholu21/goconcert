@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-
 class FormPage extends StatefulWidget {
   final String concertName;
   final String ocrResult;
@@ -43,10 +42,49 @@ class _FormPageState extends State<FormPage> {
 
   String findName(String text) {
     final lines = text.split('\n');
-    if (lines.length >= 13) {
-      String name =
-          lines[12]; // Index 12 for the 13th line because index starts from 0
-      name = name.replaceAll(':', '');
+    final unwantedStrings = [
+      'LAKI-LAKI',
+      'PEREMPUAN',
+      'DSN',
+      'KELURAHAN',
+      'KEL',
+      'ISLAM',
+      'KRISTEN',
+      'KATOLIK',
+      'HINDU',
+      'BUDHA',
+      'KONGHUCU',
+      'BELUM KAWIN',
+      'KAWIN',
+      'PELAJAR/MAHASISWA',
+      'PNS',
+      'WNI',
+      'SEUMUR HIDUP',
+      'Nama',
+      'Tempat/Tgl Lahir',
+      'Alamat',
+      'RT/RW',
+      'Kel/Desa',
+      'Kecamatan',
+      'Agama',
+      'Status Perkawinan',
+      'Pekerjaan',
+      'Kewarganegaraan',
+      'Berlaku Hingga',
+      'NIK',
+      'PROVINSI', // Add unwanted string
+      'KOTA', // Add unwanted string
+      'KABUPATEN' // Add unwanted string
+    ];
+    if (lines.length >= 14) {
+      String name = lines.getRange(12, 13).join(' '); // Get lines 13 and 14
+      for (var str in unwantedStrings) {
+        name = name.replaceAll(str, '');
+      }
+      name = name.replaceAll(
+          RegExp(r'\d{2}-\d{2}-\d{4}'), ''); // Remove date format
+      name =
+          name.replaceAll(RegExp(r'\d{3}/\d{3}'), ''); // Remove number format
       return name;
     } else {
       return '';
@@ -54,12 +92,17 @@ class _FormPageState extends State<FormPage> {
   }
 
   String findBirthDate(String text) {
-    final RegExp regExp = RegExp(r'\b\d{1,2}-\d{1,2}-\d{2,4}\b');
+    final RegExp regExp = RegExp(r'\b\d{2}-\d{2}-\d{4}\b');
     final Match? match = regExp.firstMatch(text);
 
     if (match != null) {
       final String birthDate = text.substring(match.start, match.end);
-      return birthDate;
+      final int year = int.parse(birthDate.split('-').last);
+      if (year < 2011) {
+        return birthDate;
+      } else {
+        return '';
+      }
     } else {
       return '';
     }
@@ -69,7 +112,7 @@ class _FormPageState extends State<FormPage> {
     final lines = text.split('\n');
     if (lines.length >= 20) {
       String address = lines
-          .getRange(15, 19)
+          .getRange(15, 18)
           .join(', '); // Join lines with a comma and a space
       address = address.replaceAll(':', '');
       return address;

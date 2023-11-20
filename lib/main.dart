@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:goconcert/pages/dashboard.dart';
 import 'package:goconcert/pages/start_app.dart';
 
 void main() {
@@ -14,7 +15,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: Scaffold(
-        body: StartApp(),
+        body: DashboardWidget(),
       ),
     );
   }
