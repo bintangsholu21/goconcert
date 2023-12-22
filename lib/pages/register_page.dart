@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'login_page.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class RegisterPage extends StatefulWidget {
   @override
@@ -10,8 +11,10 @@ class _RegisterPageState extends State<RegisterPage> {
   final _formKey = GlobalKey<FormState>();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
+  final _namaController = TextEditingController();
 
   bool _isPasswordHidden = true;
+  var db = FirebaseFirestore.instance;
 
   @override
   Widget build(BuildContext context) {
@@ -115,6 +118,7 @@ class _RegisterPageState extends State<RegisterPage> {
                               ],
                             ),
                             child: TextFormField(
+                              controller: _namaController,
                               style: TextStyle(
                                 color: Colors.white,
                               ),
@@ -357,6 +361,15 @@ class _RegisterPageState extends State<RegisterPage> {
                   // Text - "Sudah memiliki akun? Masuk"
                   GestureDetector(
                     onTap: () {
+                      final nama = _emailController.text;
+                      final email = _emailController.text;
+                      final password = _passwordController.text;
+                      final user = <String, dynamic>{
+                        "nama": nama,
+                        "email": email,
+                        "password": password
+                      };
+                      db.collection("users").add(user);
                       // Handle action when "Sudah memiliki akun? Masuk" text is pressed
                       Navigator.push(
                         context,

@@ -2,6 +2,8 @@ plugins {
     id "com.android.application"
     id "kotlin-android"
     id "dev.flutter.flutter-gradle-plugin"
+    id 'com.google.gms.google-services'
+
 }
 
 def localProperties = new Properties()
@@ -23,7 +25,7 @@ if (flutterVersionName == null) {
 }
 
 android {
-    compileSdkVersion 30
+    compileSdkVersion 28
     namespace "com.example.goconcert"
     compileSdkVersion flutter.compileSdkVersion
     ndkVersion flutter.ndkVersion
@@ -50,6 +52,7 @@ android {
         targetSdkVersion flutter.targetSdkVersion
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
+        multiDexEnabled true
     }
 
     buildTypes {
@@ -65,4 +68,10 @@ flutter {
     source '../..'
 }
 
-dependencies {}
+dependencies {
+    implementation "com.android.support:multidex:1.0.3"
+    implementation "com.google.firebase:firebase-bom:32.6.0"
+    implementation "com.google.firebase:firebase-analytics-ktx"
+}
+
+apply plugin: 'com.google.gms.google-services'

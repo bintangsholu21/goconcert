@@ -57,11 +57,6 @@ class _MyTicketsPageState extends State<MyTicketsPage> {
     final RecognizedText recognizedText =
         await textRecognizer.processImage(inputImage);
 
-    final String nik = findNIK(recognizedText.text);
-    final String name = findName(recognizedText.text);
-    final String birthDate = findBirthDate(recognizedText.text);
-    final String address = findAddress(recognizedText.text);
-
     setState(() {
       _recognizedText = recognizedText.text;
       // _recognizedText = '\n$nik\n$name\n$birthDate\n$address';
@@ -99,12 +94,7 @@ class _MyTicketsPageState extends State<MyTicketsPage> {
   //   return 'No NIK found';
   // }
 
-  bool isNumeric(String value) {
-    if (value == null) {
-      return false;
-    }
-    return double.tryParse(value) != null;
-  }
+
 
   String findName(String text) {
     final lines = text.split('\n');

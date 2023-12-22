@@ -95,7 +95,7 @@ class TicketDetails extends StatelessWidget {
             alignment: Alignment.topCenter,
             child: selectedConcert != null
                 ? Image.asset(
-                    'assets/img/${selectedConcert.banner}',
+                    'assets/img/${selectedConcert!.banner}',
                     fit: BoxFit.cover,
                     width: MediaQuery.of(context).size.width,
                   )
@@ -191,31 +191,30 @@ class TicketDetails extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   _buildInfoRow(
-                      selectedConcert?.category ?? '', 12.0, FontWeight.normal),
-                  _buildSectionTitle(selectedConcert?.title ?? ''),
-                  _buildInfoRow(
-                      selectedConcert?.price ?? '', 16.0, FontWeight.bold),
+                      selectedConcert.category, 12.0, FontWeight.normal),
+                  _buildSectionTitle(selectedConcert.title),
+                  _buildInfoRow(selectedConcert.price, 16.0, FontWeight.bold),
                   _buildInfoRowWithIcon(
-                    selectedConcert?.date ?? '',
+                    selectedConcert.date,
                     FontAwesomeIcons.calendar,
                     12.0,
                     FontWeight.normal,
                   ),
                   _buildInfoRowWithIcon(
-                    selectedConcert?.location ?? '',
+                    selectedConcert.location,
                     FontAwesomeIcons.map,
                     12.0,
                     FontWeight.bold,
                   ),
                   _buildSectionTitle('Event Details', fontSize: 16.0),
-                  _buildSectionContent(selectedConcert?.eventDetails ?? ''),
+                  _buildSectionContent(selectedConcert.eventDetails),
                 ],
               ),
             ),
           ),
 
           Positioned(
-            bottom: 50.0,
+            bottom: 25.0,
             left: 0,
             right: 0,
             child: Center(
@@ -231,8 +230,9 @@ class TicketDetails extends StatelessWidget {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) =>
-                                ScanPage(concertName: concertName), // Ganti dengan halaman tujuan untuk membeli tiket
+                            builder: (context) => ScanPage(
+                                concertName:
+                                    concertName), // Ganti dengan halaman tujuan untuk membeli tiket
                           ),
                         );
                       },
