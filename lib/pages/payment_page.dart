@@ -107,7 +107,7 @@ class _PaymentPageState extends State<PaymentPage> {
                 children: [
                   Center(
                     child: Text(
-                      'Transaksi Sukses',
+                      'Transaction Success',
                       style: TextStyle(
                         fontSize: 24,
                         fontWeight: FontWeight.bold,
@@ -132,7 +132,7 @@ class _PaymentPageState extends State<PaymentPage> {
                     children: [
                       Flexible(
                         child: Text(
-                          'Metode Pembayaran',
+                          'Payment Methods',
                           style: TextStyle(
                             fontSize: 16.0,
                             fontWeight: FontWeight.bold,
@@ -180,7 +180,7 @@ class _PaymentPageState extends State<PaymentPage> {
                     children: [
                       Flexible(
                         child: Text(
-                          'Nama',
+                          'Name',
                           style: TextStyle(
                             fontSize: 16.0,
                             fontWeight: FontWeight.bold,
@@ -227,7 +227,7 @@ class _PaymentPageState extends State<PaymentPage> {
                     children: [
                       Flexible(
                         child: Text(
-                          'Nama Konser',
+                          'Concert Name',
                           style: TextStyle(
                             fontSize: 16.0,
                             fontWeight: FontWeight.bold,
@@ -251,7 +251,7 @@ class _PaymentPageState extends State<PaymentPage> {
                     children: [
                       Flexible(
                         child: Text(
-                          'Kategori',
+                          'Category',
                           style: TextStyle(
                             fontSize: 16.0,
                             fontWeight: FontWeight.bold,
@@ -275,7 +275,7 @@ class _PaymentPageState extends State<PaymentPage> {
                     children: [
                       Flexible(
                         child: Text(
-                          'Harga',
+                          'Price',
                           style: TextStyle(
                             fontSize: 16.0,
                             fontWeight: FontWeight.bold,

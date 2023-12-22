@@ -80,7 +80,7 @@ class StartApp extends StatelessWidget {
                       ),
                       child: Center(
                         child: Text(
-                          'Daftar Sekarang!',
+                          'Register Now!',
                           style: TextStyle(
                             fontFamily: 'Poppins',
                             color: Colors.black,
@@ -102,7 +102,7 @@ class StartApp extends StatelessWidget {
                       );
                     },
                     child: Text(
-                      'Sudah memiliki akun? Masuk',
+                      'Already have an account? Login',
                       style: TextStyle(
                         fontSize: 15,
                         fontFamily: 'Poppins',

@@ -264,7 +264,7 @@ class _FormPageState extends State<FormPage> {
                           Padding(
                             padding: EdgeInsets.only(left: 5.0),
                             child: Text(
-                              'Nama Lengkap',
+                              'Full Name',
                               style: TextStyle(
                                 fontFamily: 'Poppins',
                                 fontSize: 16.0,
@@ -307,7 +307,7 @@ class _FormPageState extends State<FormPage> {
                                   borderSide: BorderSide(
                                       color: Colors.white, width: 2.0),
                                 ),
-                                hintText: 'Nama Lengkap Anda',
+                                hintText: 'Your Full Name',
                                 hintStyle: TextStyle(
                                   fontFamily: 'Poppins',
                                   fontSize: 12,
@@ -370,7 +370,7 @@ class _FormPageState extends State<FormPage> {
                                   borderSide: BorderSide(
                                       color: Colors.white, width: 2.0),
                                 ),
-                                hintText: 'Address Anda (5 words only)',
+                                hintText: 'Your Address (5 words only)',
                                 hintStyle: TextStyle(
                                   fontFamily: 'Poppins',
                                   fontSize: 12,

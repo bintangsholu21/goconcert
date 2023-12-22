@@ -30,7 +30,7 @@ class TicketDetails extends StatelessWidget {
     Concert(
       category: 'K-Pop',
       title: 'NewJeans',
-      price: 'Rp5.000.000 / orang',
+      price: 'Rp5.000.000 / person',
       date: '14 January 2024',
       location: 'Jakarta International Stadium (JIS)',
       eventDetails:
@@ -40,17 +40,17 @@ class TicketDetails extends StatelessWidget {
     Concert(
       category: 'K-Pop',
       title: 'Le Sserafim',
-      price: 'Rp4.500.000 / orang',
+      price: 'Rp4.500.000 / person',
       date: '24 March 2024',
       location: 'Stadion Gelora Bung Karno',
       eventDetails:
-          'Grup K-Pop Le Sserafim konser di Jakarta pada 24 March 2024. Konser tersebut digelar di Stadion Gelora Bung Karno. Dikutip Hallyu Idol, Le Sserafim beranggota lima orang naungan agensi Source Music. Debut mereka pada 2 Mei 2022 dengan mini album pertama Fearless.',
+          'Grup K-Pop Le Sserafim konser di Jakarta pada 24 March 2024. Konser tersebut digelar di Stadion Gelora Bung Karno. Dikutip Hallyu Idol, Le Sserafim beranggota lima personil naungan agensi Source Music. Debut mereka pada 2 Mei 2022 dengan mini album pertama Fearless.',
       banner: 'LeSserafim-banner.png',
     ),
     Concert(
       category: 'Pop',
       title: 'Coldplay',
-      price: 'Rp2.500.000 / orang',
+      price: 'Rp2.500.000 / person',
       date: '15 November 2023',
       location: 'Stadion Gelora Bung Karno',
       eventDetails:
@@ -60,7 +60,7 @@ class TicketDetails extends StatelessWidget {
     Concert(
       category: 'Rock',
       title: 'Bring Me The Horizon',
-      price: 'Rp5.500.000 / orang',
+      price: 'Rp5.500.000 / person',
       date: '10 November 2023',
       location: 'Beach City, Ancol, Jakarta',
       eventDetails:
@@ -221,7 +221,7 @@ class TicketDetails extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  // Button - "Beli Tiket"
+                  // Button - "Buy a Ticket"
                   Container(
                     width: 370.0,
                     height: 50.0,
@@ -243,7 +243,7 @@ class TicketDetails extends StatelessWidget {
                         ),
                       ),
                       child: Text(
-                        'Beli Tiket', // Teks tombol "Beli Tiket"
+                        'Buy a Ticket', // Teks tombol "Beli Tiket"
                         style: TextStyle(
                           color: Colors.black,
                           fontWeight: FontWeight.bold,
