@@ -159,7 +159,7 @@ class _PaymentMethodPageState extends State<PaymentMethodPage> {
                               borderRadius: BorderRadius.circular(8),
                             ),
                             child: ListTile(
-                              title: Text('Gopay'),
+                              title: Text('GoPay'),
                               leading: Radio(
                                 value: 'Gopay',
                                 groupValue: selectedPaymentMethod,
@@ -225,7 +225,7 @@ class _PaymentMethodPageState extends State<PaymentMethodPage> {
                           )),
                 );
               },
-              child: Text('Konfirmasi metode pembayaran'),
+              child: Text('Confirmation of payment method'),
               style: ElevatedButton.styleFrom(
                 foregroundColor: Colors.white,
                 backgroundColor: Color(0xFF363062),

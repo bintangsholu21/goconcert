@@ -222,7 +222,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        'Nama',
+                        'Name',
                         style: TextStyle(
                           fontSize: 16.0,
                           fontWeight: FontWeight.bold,
@@ -241,7 +241,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        'Alamat',
+                        'Address',
                         style: TextStyle(
                           fontSize: 16.0,
                           fontWeight: FontWeight.bold,
@@ -271,7 +271,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      'Kategori yang dipilih',
+                      'Category selected',
                       style: TextStyle(
                         fontSize: 16.0,
                         fontWeight: FontWeight.bold,
@@ -291,7 +291,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      'Total Pembayaran',
+                      'Total Payment',
                       style: TextStyle(
                         fontSize: 16.0,
                         fontWeight: FontWeight.bold,
@@ -351,7 +351,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                             formData: widget.formData)),
                   );
                 },
-                child: Text('Metode Pembayaran'),
+                child: Text('Payment Methods'),
                 style: ElevatedButton.styleFrom(
                   textStyle: TextStyle(fontSize: 14.0)
                       .copyWith(fontWeight: FontWeight.bold)

@@ -135,7 +135,7 @@ class _LoginPageState extends State<LoginPage> {
                                   borderSide: BorderSide(
                                       color: Colors.white, width: 2.0),
                                 ),
-                                hintText: 'Masukkan Email',
+                                hintText: 'Enter Email',
                                 hintStyle: TextStyle(
                                   fontFamily: 'Poppins',
                                   fontSize: 12,
@@ -145,9 +145,9 @@ class _LoginPageState extends State<LoginPage> {
                               ),
                               validator: (value) {
                                 if (value!.isEmpty) {
-                                  return 'Email tidak boleh kosong';
+                                  return 'Email cannot be empty';
                                 } else if (!isValidEmail(value)) {
-                                  return 'Email tidak valid';
+                                  return 'Invalid email';
                                 }
                                 return null;
                               },
@@ -206,7 +206,7 @@ class _LoginPageState extends State<LoginPage> {
                                   borderSide: BorderSide(
                                       color: Colors.white, width: 2.0),
                                 ),
-                                hintText: 'Masukkan Password',
+                                hintText: 'Enter Password',
                                 hintStyle: TextStyle(
                                   fontFamily: 'Poppins',
                                   fontSize: 12,
@@ -231,9 +231,9 @@ class _LoginPageState extends State<LoginPage> {
                               obscureText: _isPasswordHidden,
                               validator: (value) {
                                 if (value!.isEmpty) {
-                                  return 'Password tidak boleh kosong';
+                                  return 'Password cannot be empty';
                                 } else if (value.length < 8) {
-                                  return 'Password minimal 8 karakter';
+                                  return 'Password at least 8 characters';
                                 }
                                 return null;
                               },
@@ -280,7 +280,7 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                       ),
                       child: Text(
-                        'Masuk', // Ubah teks menjadi 'Masuk'
+                        'Login', // Ubah teks menjadi 'Masuk'
                         style: TextStyle(
                           color: Colors.black,
                           fontWeight: FontWeight.bold,
@@ -300,7 +300,7 @@ class _LoginPageState extends State<LoginPage> {
                       );
                     },
                     child: Text(
-                      'Tidak memiliki akun? Daftar', // Ubah teks
+                      'Do not have an account? Register', // Ubah teks
                       style: TextStyle(
                         color: Colors.white,
                       ),

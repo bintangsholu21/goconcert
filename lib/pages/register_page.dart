@@ -62,7 +62,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   SizedBox(width: 20),
                   // Object 2 - Text
                   Text(
-                    'Daftar Akun',
+                    'Register',
                     style: TextStyle(
                       fontSize: 24.0,
                       fontFamily: 'Poppins',
@@ -94,7 +94,7 @@ class _RegisterPageState extends State<RegisterPage> {
                           Padding(
                             padding: EdgeInsets.only(left: 5.0),
                             child: Text(
-                              'Nama Lengkap',
+                              'Full Name',
                               style: TextStyle(
                                 fontFamily: 'Poppins',
                                 fontSize: 14.0,
@@ -137,7 +137,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                   borderSide: BorderSide(
                                       color: Colors.white, width: 2.0),
                                 ),
-                                hintText: 'Masukkan Nama Lengkap ',
+                                hintText: 'Enter your full name ',
                                 hintStyle: TextStyle(
                                   fontFamily: 'Poppins',
                                   fontSize: 12,
@@ -147,7 +147,7 @@ class _RegisterPageState extends State<RegisterPage> {
                               ),
                               validator: (value) {
                                 if (value!.isEmpty) {
-                                  return 'Nama Lengkap tidak boleh kosong';
+                                  return 'Full Name cannot be empty';
                                 }
                                 return null;
                               },
@@ -206,7 +206,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                   borderSide: BorderSide(
                                       color: Colors.white, width: 2.0),
                                 ),
-                                hintText: 'Masukkan Email',
+                                hintText: 'Enter Email',
                                 hintStyle: TextStyle(
                                   fontFamily: 'Poppins',
                                   fontSize: 12,
@@ -216,9 +216,9 @@ class _RegisterPageState extends State<RegisterPage> {
                               ),
                               validator: (value) {
                                 if (value!.isEmpty) {
-                                  return 'Email tidak boleh kosong';
+                                  return 'Email cannot be empty';
                                 } else if (!isValidEmail(value)) {
-                                  return 'Email tidak valid';
+                                  return 'Invalid email';
                                 }
                                 return null;
                               },
@@ -277,7 +277,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                   borderSide: BorderSide(
                                       color: Colors.white, width: 2.0),
                                 ),
-                                hintText: 'Masukkan Password',
+                                hintText: 'Enter Password',
                                 hintStyle: TextStyle(
                                   fontFamily: 'Poppins',
                                   fontSize: 12,
@@ -302,9 +302,9 @@ class _RegisterPageState extends State<RegisterPage> {
                               obscureText: _isPasswordHidden,
                               validator: (value) {
                                 if (value!.isEmpty) {
-                                  return 'Password tidak boleh kosong';
+                                  return 'Password cannot be empty';
                                 } else if (value.length < 8) {
-                                  return 'Password minimal 8 karakter';
+                                  return 'Password at least 8 characters';
                                 }
                                 return null;
                               },
@@ -348,7 +348,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         ),
                       ),
                       child: Text(
-                        'Buat Akun',
+                        'create an account',
                         style: TextStyle(
                           color: Colors.black,
                           fontWeight: FontWeight.bold,
@@ -377,7 +377,7 @@ class _RegisterPageState extends State<RegisterPage> {
                       );
                     },
                     child: Text(
-                      'Sudah memiliki akun? Masuk',
+                      'Already have an account? Login',
                       style: TextStyle(
                         color: Colors.white,
                       ),

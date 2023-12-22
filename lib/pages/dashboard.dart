@@ -177,7 +177,7 @@ class DashboardPage extends State<DashboardWidget> {
                         color: Colors.white,
                       ),
                       decoration: InputDecoration(
-                        hintText: 'Cari Event',
+                        hintText: 'Search Events',
                         hintStyle: TextStyle(
                           fontFamily: 'Poppins',
                           fontSize: 14.0,
