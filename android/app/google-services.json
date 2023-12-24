@@ -1,13 +1,13 @@
 {
   "project_info": {
-    "project_number": "322509383923",
-    "project_id": "goconcert-k4ti3g",
-    "storage_bucket": "goconcert-k4ti3g.appspot.com"
+    "project_number": "700167109451",
+    "project_id": "goconcert-ti3g",
+    "storage_bucket": "goconcert-ti3g.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:322509383923:android:65bc1085ee75fd77b9af86",
+        "mobilesdk_app_id": "1:700167109451:android:6441729686b6402efd86ce",
         "android_client_info": {
           "package_name": "com.example.goconcert"
         }
@@ -15,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyD8IpMiu1lTUpRVRsHxqiS56-JySxDoGiw"
+          "current_key": "AIzaSyCezMgOisVClenN8rvEgI85Sdc9W9UuRTE"
         }
       ],
       "services": {

@@ -23,15 +23,9 @@ class DefaultFirebaseOptions {
       case TargetPlatform.android:
         return android;
       case TargetPlatform.iOS:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for ios - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
+        return ios;
       case TargetPlatform.macOS:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for macos - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
+        return macos;
       case TargetPlatform.windows:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for windows - '
@@ -50,20 +44,38 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyBBPpIZ1HNzqNpTjHC1oDOg48TuotrEIto',
-    appId: '1:322509383923:web:717147f1efa2fa81b9af86',
-    messagingSenderId: '322509383923',
-    projectId: 'goconcert-k4ti3g',
-    authDomain: 'goconcert-k4ti3g.firebaseapp.com',
-    storageBucket: 'goconcert-k4ti3g.appspot.com',
-    measurementId: 'G-TBT9TJ085Q',
+    apiKey: 'AIzaSyDH5MdMAemRthHOrqvANTHWMTzH_ZjiA0Q',
+    appId: '1:700167109451:web:e34ef5981fb5ce84fd86ce',
+    messagingSenderId: '700167109451',
+    projectId: 'goconcert-ti3g',
+    authDomain: 'goconcert-ti3g.firebaseapp.com',
+    storageBucket: 'goconcert-ti3g.appspot.com',
+    measurementId: 'G-7KFJHSEBL5',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyD8IpMiu1lTUpRVRsHxqiS56-JySxDoGiw',
-    appId: '1:322509383923:android:65bc1085ee75fd77b9af86',
-    messagingSenderId: '322509383923',
-    projectId: 'goconcert-k4ti3g',
-    storageBucket: 'goconcert-k4ti3g.appspot.com',
+    apiKey: 'AIzaSyCezMgOisVClenN8rvEgI85Sdc9W9UuRTE',
+    appId: '1:700167109451:android:6441729686b6402efd86ce',
+    messagingSenderId: '700167109451',
+    projectId: 'goconcert-ti3g',
+    storageBucket: 'goconcert-ti3g.appspot.com',
+  );
+
+  static const FirebaseOptions ios = FirebaseOptions(
+    apiKey: 'AIzaSyCIXgDBT4pRgzGAa0oId-5Z2f6SjPXJDi4',
+    appId: '1:700167109451:ios:e15b9a79bbb6f5dffd86ce',
+    messagingSenderId: '700167109451',
+    projectId: 'goconcert-ti3g',
+    storageBucket: 'goconcert-ti3g.appspot.com',
+    iosBundleId: 'com.example.goconcert',
+  );
+
+  static const FirebaseOptions macos = FirebaseOptions(
+    apiKey: 'AIzaSyCIXgDBT4pRgzGAa0oId-5Z2f6SjPXJDi4',
+    appId: '1:700167109451:ios:74b122446f3a4b9efd86ce',
+    messagingSenderId: '700167109451',
+    projectId: 'goconcert-ti3g',
+    storageBucket: 'goconcert-ti3g.appspot.com',
+    iosBundleId: 'com.example.goconcert.RunnerTests',
   );
 }
