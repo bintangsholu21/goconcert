@@ -335,6 +335,15 @@ class _RegisterPageState extends State<RegisterPage> {
                     child: ElevatedButton(
                       onPressed: () {
                         if (_formKey.currentState!.validate()) {
+                          final nama = _emailController.text;
+                          final email = _emailController.text;
+                          final password = _passwordController.text;
+                          final user = <String, dynamic>{
+                            "nama": nama,
+                            "email": email,
+                            "password": password
+                          };
+                          db.collection("users").add(user);
                           Navigator.push(
                               context,
                               MaterialPageRoute(
@@ -361,16 +370,6 @@ class _RegisterPageState extends State<RegisterPage> {
                   // Text - "Sudah memiliki akun? Masuk"
                   GestureDetector(
                     onTap: () {
-                      final nama = _emailController.text;
-                      final email = _emailController.text;
-                      final password = _passwordController.text;
-                      final user = <String, dynamic>{
-                        "nama": nama,
-                        "email": email,
-                        "password": password
-                      };
-                      db.collection("users").add(user);
-                      // Handle action when "Sudah memiliki akun? Masuk" text is pressed
                       Navigator.push(
                         context,
                         MaterialPageRoute(builder: (context) => LoginPage()),

@@ -21,95 +21,36 @@ class FormData {
 
 class _FormPageState extends State<FormPage> {
   final _formKey = GlobalKey<FormState>();
-  final _nikController = TextEditingController();
-  final _nameController = TextEditingController();
-  final _addressController = TextEditingController();
+  late TextEditingController _nikController;
+  late TextEditingController _nameController;
+  late TextEditingController _addressController;
+
+@override
+void initState() {
+  super.initState();
+  // Parse ocrResult
+  Map<String, String> ocrData = {};
+  List<String> lines = widget.ocrResult.split('\n');
+  for (var line in lines) {
+    List<String> parts = line.split(': ');
+    if (parts.length == 2) {
+      ocrData[parts[0]] = parts[1];
+    }
+  }
+  _nikController = TextEditingController(text: ocrData['NIK']);
+  _nameController = TextEditingController(text: ocrData['Nama']);
+  _addressController = TextEditingController(text: ocrData['Alamat']);
+}
+
 
   @override
-  void initState() {
-    super.initState();
-
-    // Parse the OCR result and set the initial values of the TextFormFields
-    _nikController.text = findNIK(widget.ocrResult);
-    _nameController.text = findName(widget.ocrResult);
-    _addressController.text = findAddress(widget.ocrResult);
+  void dispose() {
+    _nikController.dispose();
+    _nameController.dispose();
+    _addressController.dispose();
+    super.dispose();
   }
 
-  String findNIK(String text) {
-    final RegExp regExp = RegExp(r'\b\d{16}\b');
-    final Match? match = regExp.firstMatch(text);
-
-    if (match != null) {
-      final String nik = text.substring(match.start, match.end);
-      return nik;
-    } else {
-      return '';
-    }
-  }
-
-  String findName(String text) {
-    final lines = text.split('\n');
-    final unwantedStrings = [
-      'LAKI-LAKI',
-      'PEREMPUAN',
-      'DSN',
-      'KELURAHAN',
-      'KEL',
-      'ISLAM',
-      'KRISTEN',
-      'KATOLIK',
-      'HINDU',
-      'BUDHA',
-      'KONGHUCU',
-      'BELUM KAWIN',
-      'KAWIN',
-      'PELAJAR/MAHASISWA',
-      'PNS',
-      'WNI',
-      'SEUMUR HIDUP',
-      'Nama',
-      'Tempat/Tgl Lahir',
-      'Alamat',
-      'RT/RW',
-      'Kel/Desa',
-      'Kecamatan',
-      'Agama',
-      'Status Perkawinan',
-      'Pekerjaan',
-      'Kewarganegaraan',
-      'Berlaku Hingga',
-      'NIK',
-      'PROVINSI', // Add unwanted string
-      'KOTA', // Add unwanted string
-      'KABUPATEN' // Add unwanted string
-    ];
-    if (lines.length >= 14) {
-      String name = lines.getRange(12, 13).join(' '); // Get lines 13 and 14
-      for (var str in unwantedStrings) {
-        name = name.replaceAll(str, '');
-      }
-      name = name.replaceAll(
-          RegExp(r'\d{2}-\d{2}-\d{4}'), ''); // Remove date format
-      name =
-          name.replaceAll(RegExp(r'\d{3}/\d{3}'), ''); // Remove number format
-      return name;
-    } else {
-      return '';
-    }
-  }
-
-  String findAddress(String text) {
-    final lines = text.split('\n');
-    if (lines.length >= 20) {
-      String address = lines
-          .getRange(15, 18)
-          .join(', '); // Join lines with a comma and a space
-      address = address.replaceAll(':', '');
-      return address;
-    } else {
-      return '';
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
