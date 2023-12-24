@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:goconcert/pages/dashboard.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:goconcert/pages/my_tickets.dart';
 import 'package:goconcert/pages/start_app.dart';
 import 'firebase_options.dart';
 

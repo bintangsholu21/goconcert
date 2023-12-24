@@ -6,6 +6,9 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:camera/camera.dart';
 import 'form_page.dart';
 import 'package:image/image.dart' as img;
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class ScanPage extends StatefulWidget {
   final String concertName;
@@ -17,29 +20,15 @@ class ScanPage extends StatefulWidget {
 }
 
 class _ScanPageState extends State<ScanPage> {
+  // Add this to your state variables
+  bool _isLoading = false;
   CameraController? _controller;
   Future<void>? _initializeControllerFuture;
 
   File? _image;
   final picker = ImagePicker();
-
-  Future<void> processImage() async {
-    // Read image from file
-    img.Image? image = img.decodeImage(File(_image!.path).readAsBytesSync());
-
-    if (image != null) {
-      // Convert image to grayscale
-      image = img.grayscale(image);
-
-      // Increase contrast by 20%
-      image = img.adjustColor(image, contrast: 50);
-
-      image = img.adjustColor(image, brightness: 50);
-
-      // Save the processed image
-      File(_image!.path).writeAsBytesSync(img.encodeJpg(image));
-    }
-  }
+  final _textController = TextEditingController();
+  String _recognizedText = '';
 
   Future getImage() async {
     final pickedFile = await picker.pickImage(source: ImageSource.gallery);
@@ -47,8 +36,8 @@ class _ScanPageState extends State<ScanPage> {
     setState(() {
       if (pickedFile != null) {
         _image = File(pickedFile.path);
-        processImage();
-        recognizeText();
+        _isLoading = true;
+        uploadImage(_image!);
       } else {
         // Use a logging framework instead of print
         debugPrint('No image selected.');
@@ -56,13 +45,51 @@ class _ScanPageState extends State<ScanPage> {
     });
   }
 
-  Future<String> recognizeText() async {
-    final inputImage = InputImage.fromFile(_image!);
-    final textRecognizer = GoogleMlKit.vision.textRecognizer();
-    final RecognizedText recognizedText =
-        await textRecognizer.processImage(inputImage);
+  Future<void> uploadImage(File image) async {
+    var url = Uri.parse('http://bintangsholu.pythonanywhere.com/upload');
+    var request = http.MultipartRequest('POST', url);
+    request.files.add(await http.MultipartFile.fromPath('file', image.path));
+    var response = await request.send();
 
-    return recognizedText.text;
+    if (response.statusCode == 200) {
+      print('Image uploaded successfully.');
+    } else {
+      print('Image upload failed with status: ${response.statusCode}.');
+    }
+  }
+
+  Future<String> getOCRResult() async {
+    var url =
+        Uri.parse('http://bintangsholu.pythonanywhere.com/display_results');
+    var response = await http.get(url);
+
+    if (response.statusCode == 200) {
+      print('Response body: ${response.body}');
+      var decoded = jsonDecode(response.body);
+      if (decoded is List && decoded.isNotEmpty) {
+        var latestResult = decoded.last;
+        if (latestResult.containsKey('NIK') &&
+            latestResult.containsKey('Nama') &&
+            latestResult.containsKey('Alamat')) {
+          return 'NIK: ${latestResult['NIK']}\nNama: ${latestResult['Nama']}\nAlamat: ${latestResult['Alamat']}';
+        } else {
+          print(
+              'The keys "NIK", "Nama", and "Alamat" do not exist in the data.');
+          return 'Error: The keys "NIK", "Nama", and "Alamat" do not exist in the data.';
+        }
+      } else {
+        print('No OCR results found.');
+        return 'Error: No OCR results found.';
+      }
+    } else {
+      print('Request failed with status: ${response.statusCode}.');
+      return 'Error: Request failed with status: ${response.statusCode}.';
+    }
+  }
+
+  Future<String> recognizeText() async {
+    await uploadImage(_image!);
+    return await getOCRResult();
   }
 
   @override
@@ -100,6 +127,20 @@ class _ScanPageState extends State<ScanPage> {
     return Scaffold(
       body: Stack(
         children: [
+          _isLoading
+            ? Stack(
+                children: [
+                  Positioned.fill(
+                    child: Container(
+                      color: Colors.black.withOpacity(0.3), // Transparent background
+                      child: Center(
+                        child: CircularProgressIndicator(),
+                      ),
+                    ),
+                  ),
+                ],
+              )
+            : Container(),
           // Container 1 - Camera Preview
           Align(
             alignment: Alignment.topCenter,
@@ -241,17 +282,25 @@ class _ScanPageState extends State<ScanPage> {
                     height: 50.0,
                     child: ElevatedButton(
                       onPressed: () async {
+                        setState(() {
+                          _isLoading = true;
+                        });
                         await getImage();
                         final recognizedText = await recognizeText();
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => FormPage(
-                              concertName: widget.concertName,
-                              ocrResult: recognizedText,
+                        setState(() {
+                          _isLoading = false;
+                        });
+                        if (!_isLoading) {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => FormPage(
+                                concertName: widget.concertName,
+                                ocrResult: recognizedText,
+                              ),
                             ),
-                          ),
-                        );
+                          );
+                        }
                       },
                       style: ElevatedButton.styleFrom(
                         primary: Colors.white,
