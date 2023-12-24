@@ -13,6 +13,7 @@
 - [Anggota Kelompok](#member)
 - [About The Project](#about)
 - [Fitur Aplikasi](#fitur)
+- [Cara Menggunakan](#usage)
 - [Tampilan Aplikasi](#tampilan)
 
 ## 👨🏻‍💻 Anggota Kelompok <a name = "member"></a>
@@ -33,6 +34,14 @@ Aplikasi GoConcert menawarkan proses pembelian tiket yang efisien dengan menguta
 * Checkout
 * Payment Method
 * Payment Status
+
+## 🎈 Cara Menjalankan <a name="usage"></a>
+1. git clone
+2. git bash ke folder yang diinginkan
+3. buka project goconcert menggunakan visual studio code atau code editor yang lain.
+4. Pada terminal ketik git pull origin main
+5. Selanjutnya ketikan Flutter pub get
+6. Langkah terakhir lakukan run and debug project
 
 ## 📸 **Screenshots** <a name = "tampilan"></a>
 * Start App
